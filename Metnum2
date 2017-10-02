@@ -1,0 +1,111 @@
+/* Nama  : Nurjamil Zulianto A | 3411151059
+           Fajar Kristiawan   | 3411151061
+
+   Kelas : SIE-A
+   Program Operasi Aritmatika
+   Tugas Metode Numerik 2
+   Tanggal pengerjaan: 29/09/2017*/
+
+#include <iostream>
+
+using namespace std;
+
+float A,B;
+int y_rata2,y[7],x_kali_y[7],total_y=0,total_x_kali_y=0;
+int i,m,x_rata2,x[7],x_kuadrat[7],total_x=0,total_x_kuadrat=0;
+int sigma_x(int m);
+int sigma_y(int m);
+
+void Program();
+int main()
+{
+	m=7;
+	Program();
+	return 0;
+	
+}
+void Program()
+{
+
+cout<<"==========================================================================="<<endl;
+     cout<<"Program Menghitung Solisi Regresi dari suatu Permasalahan Linier Y = AX + B"<<endl;
+     cout<<"Dengan menggunaka Metode Numerik "<<endl; cout<<"==========================================================================="<<endl;
+     cout<<endl<<endl;
+	cout<<"Masukkan Nilai X : "<<endl;
+	sigma_x(m);
+	cout<<endl;
+	cout<<"Masukkan Nilai Y : "<<endl;
+	sigma_y(m);
+	cout<<endl;
+	cout<<"Tabulansi Data   :"<<endl;
+	cout<<"|--------------------------------------|"<<endl;
+	cout<<"| x     |  y  |      x2  |      xy     |"<<endl;
+	cout<<"|--------------------------------------|"<<endl;
+	for (i=0 ; i<m ; i++)
+	{
+		cout.setf(ios::left|ios::showpoint);
+		cout<<"|";
+		cout.width(9);
+		cout<<x[i];
+		cout.width(9);
+		cout<<y[i];
+		cout<<"|";
+		cout.width(9);
+		cout<<x_kuadrat[i];
+		cout<<"|";
+		cout.width(9);
+		cout<<x_kali_y[i];
+		cout<<"|";
+		cout<<endl;
+	}
+	cout<<"|--------------------------------------|"<<endl;
+	cout<<"|";
+	cout.width(7);
+	cout<<"sigma";
+	cout<<total_x;
+	cout<<"|";
+	cout.width(9);
+	cout<<total_y;
+	cout<<"|";
+	cout.width(9);
+	cout<<total_x_kuadrat;
+	cout<<"|";
+	cout.width(9);
+	cout<<total_x_kali_y;
+	cout<<"|";
+	cout<<endl;
+	cout<<"|--------------------------------------|"<<endl;
+	x_rata2 = total_x/m;
+	y_rata2 = total_y/m;
+	A = ((m*total_x_kali_y)-(total_x*total_y))/((m*total_x_kuadrat)-(total_x*total_x));
+	B = y_rata2-A*x_rata2;
+	cout<<endl<<endl;
+      cout<<"Maka solusi persamaan liniernya adalah : "<<endl;
+      cout<<" A :"<<A<<endl;
+      cout<<" B :"<<B<<endl;
+	
+}
+int sigma_x(int m)
+{
+	for (i=0 ; i<m ; i++)
+	{
+		cin>>x[i];
+		total_x = total_x + x[i];
+		x_kuadrat[i] = x[i]*x[i];
+		total_x_kuadrat = total_x_kuadrat + x_kuadrat[i];	
+	}
+	return total_x;
+	return total_x_kuadrat;
+}
+	int sigma_y(int m)
+	{
+		for (i=0 ; i<m ;i++)
+		{
+			cin>>y[i];
+			total_y = total_y + y[i];
+			x_kali_y[i] = x[i]*y[i];
+			total_x_kali_y = total_x_kali_y + x_kali_y[i];
+		}
+		return total_y;
+		return total_x_kali_y;
+	}
